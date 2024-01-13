@@ -2,5 +2,26 @@
 
 
 {% block content %}
-You're looking at product {{product}}
+<div class="product-detail">
+    <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-image">
+    <div class="product-info">
+        <h1>{{ product.name }}</h1>
+        <div class="product-rating">
+            {% for star in "12345" %}
+            {% if forloop.counter <= product.review_score %} <span class="star">&#9733;</span>
+                <!-- filled star -->
+                {% else %}
+                <span class="star">&#9734;</span> <!-- empty star -->
+                {% endif %}
+                {% endfor %}
+        </div>
+        <p class="product-price">{{ product.price }} zł</p>
+        <button class="add-to-cart">Dodaj do koszyka</button>
+    </div>
+</div>
+<div class="product-description">
+    <h2>Opis</h2>
+    <p>{{ product.description }}</p>
+</div>
+<p>Views: {{ product.view_count }}</p>
 {% endblock %}

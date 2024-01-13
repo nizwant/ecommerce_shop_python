@@ -3,13 +3,37 @@
 
 {% block content %}
 <h1>Lista produktów</h1>
+<form method="GET" action=".">
+    <select name="category">
+        <option value="">Wszystkie</option>
+        {% for category in category_list %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Filter">
+</form>
+
+<form method="GET" action=".">
+    <!-- ... -->
+    <select name="sort">
+        <option value="">Sortuj</option>
+        <option value="name_asc">Nazwa (A-Z)</option>
+        <option value="name_desc">Nazwa (Z-A)</option>
+        <option value="price_asc">Cena (rosnąco)</option>
+        <option value="price_desc">Cena (malejąco)</option>
+        <option value="popularity">Popularnosć</option>
+    </select>
+    <input type="submit" value="Sortuj">
+</form>
 {% if product_list %}
 <div class="product-grid">
     {% for product in product_list %}
     <div class="product-card">
-        <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.price }}</p>
+        <a href="{% url 'detail' product.id %}">
+            <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.price }}</p>
+        </a>
     </div>
     {% endfor %}
 </div>
