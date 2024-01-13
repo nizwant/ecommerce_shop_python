@@ -4,11 +4,15 @@
 {% block content %}
 <h1>Lista produktów</h1>
 {% if product_list %}
-<ul>
+<div class="product-grid">
     {% for product in product_list %}
-    <li><a href="/products/{{ product.id }}/">{{ product.name }}</a></li>
+    <div class="product-card">
+        <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.price }}</p>
+    </div>
     {% endfor %}
-</ul>
+</div>
 {% else %}
 <p>Brak produktów o takich parametrach</p>
 {% endif %}

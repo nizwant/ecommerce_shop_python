@@ -1,4 +1,34 @@
-h1 {
-    color: green;
-    font-family: 'Times New Roman', Times, serif;
-}
+ .navbar {
+     overflow: hidden;
+     background-color: #333;
+ }
+
+ .navbar a {
+     float: left;
+     display: block;
+     color: #f2f2f2;
+     text-align: center;
+     padding: 14px 16px;
+     text-decoration: none;
+ }
+
+ .navbar a:hover {
+     background-color: #ddd;
+     color: black;
+ }
+
+ .signin {
+     float: right;
+ }
+
+ .product-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+     gap: 20px;
+ }
+
+ .product-card {
+     border: 1px solid #ccc;
+     padding: 20px;
+     text-align: center;
+ }
