@@ -1,39 +1,48 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-
+<link href="{% static 'registration/login.css' %}" rel="stylesheet">
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<p>
+    Twój login i hasło nie pasują. Spróbuj ponownie.</p>
+</p>
 {% endif %}
 
 {% if next %}
 {% if user.is_authenticated %}
-<p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
+<p>
+    Twoje konto nie ma dostępu do tej strony. Aby kontynuować,
+    zaloguj się na konto z dostępem.</p>
+</p>
 {% else %}
-<p>Please login to see this page.</p>
+<p>Zaloguj się żeby zobaczyć tą stronę</p>
 {% endif %}
 {% endif %}
+<div class="center-div">
+    <div>
+        <form method="post" action="{% url 'login' %}" class="login-form">
+            {% csrf_token %}
 
-<form method="post" action="{% url 'login' %}" class="login-form">
-    {% csrf_token %}
-    <div class="center-div">
-        <table class="login-table">
-            <tr>
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
-            </tr>
-        </table>
+            <table class="login-table">
+                <tr>
+                    <td>Nazwa użytkownika:</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <td>Hasło:</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+            </table>
+
+            <input type="submit" value="Zaloguj" class="login-button">
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+        <div>
+            <p><a href="{% url 'password_reset' %}">Zapomniałes hasła?</a></p>
+        </div>
     </div>
-    <input type="submit" value="login" class="login-button">
-    <input type="hidden" name="next" value="{{ next }}">
-</form>
 
-{# Assumes you set up the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 
+</div>
 {% endblock %}
