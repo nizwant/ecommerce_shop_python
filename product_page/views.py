@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.sessions.models import Session
 from .models import Product, Category
+from .models import Product, FavoriteProduct
 
 
 # Create your views here.
@@ -37,3 +37,26 @@ def detail(request, product_id):
     product.view_count += 1
     product.save()
     return render(request, "products/detail.html", {"product": product})
+
+
+def add_to_favorites(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    session = Session.objects.get(session_key=request.session.session_key)
+    if not FavoriteProduct.objects.filter(session=session, product=product).exists():
+        FavoriteProduct.objects.create(session=session, product=product)
+    return redirect("index")
+
+
+def favorites(request):
+    favorites = FavoriteProduct.objects.filter(session=request.session.session_key)
+    return render(request, "products/favorites.html", {"favorites": favorites})
+
+
+from django.views.decorators.http import require_POST
+
+
+@require_POST
+def remove_from_favorites(request, favorite_id):
+    favorite = get_object_or_404(FavoriteProduct, pk=favorite_id)
+    favorite.delete()
+    return redirect("favorites")

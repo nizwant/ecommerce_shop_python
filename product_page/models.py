@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.sessions.models import Session
 
 
 # Create your models here.
@@ -20,3 +21,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class FavoriteProduct(models.Model):
+    session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)

@@ -16,7 +16,11 @@
                 {% endfor %}
         </div>
         <p class="product-price">{{ product.price }} zł</p>
-        <button class="add-to-cart">Dodaj do koszyka</button>
+        <div>
+            <button class="add-to-cart">Dodaj do koszyka</button>
+        </div>
+
+        <a href="{% url 'add_to_favorites' product.id %}" class="favorite">Dodaj do ulubionych</a>
     </div>
 </div>
 <div class="product-description">

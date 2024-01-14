@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Moje ulubione produkty</h1>
+<div class="favorites-container">
+    {% for favorite in favorites %}
+    <div class="favorite-item">
+        <img class="favorite-image" src="{{ favorite.product.main_image.url }}" alt="{{ favorite.product.name }}">
+        <h2>{{ favorite.product.name }}</h2>
+        <form action="{% url 'remove_from_favorites' favorite.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Usuń z ulubionych" class="favorite-button">
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
