@@ -13,7 +13,7 @@
     {% if user.is_authenticated %}
     <div class="navbar">
         <a href="{% url 'index'%}">Lista Produktów</a>
-
+        <p>Zalogowany jako: {{ user.username }}</p>
 
         <a class="signin" href="/accounts/logout/">Wyloguj się</a>
         <a class="signin" href="/accounts/profile/">Profil</a>
@@ -25,6 +25,7 @@
     {% else %}
     <div class="navbar">
         <a href="{% url 'index'%}">Lista Produktów</a>
+        <a class="signin" href="/accounts/register/">Zajerestruj się</a>
         <a class="signin" href="/accounts/login/">Zaloguj się</a>
     </div>
     {% endif %}
