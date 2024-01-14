@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>User Profile</h2>
+<p>First name: {{ user_profile.first_name }}</p>
+<p>Last name: {{ user_profile.last_name }}</p>
+<p>Email: {{ user_profile.email }}</p>
+<p>Phone number: {{ user_profile.phone_number }}</p>
+<p>Birth date: {{ user_profile.birth_date }}</p>
+<p>Street name: {{ user_profile.street_name }}</p>
+<p>Street number: {{ user_profile.street_number }}</p>
+<p>House number: {{ user_profile.house_number }}</p>
+<p>Zip code: {{ user_profile.zip_code }}</p>
+<p>City: {{ user_profile.city }}</p>
+<a href="{% url 'profile' %}" class="btn btn-primary">Update Profile</a>
+{% endblock %}
