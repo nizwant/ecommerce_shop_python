@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<link href="{% static 'products/favorites.css' %}" rel="stylesheet">
 <h1>Moje ulubione produkty</h1>
 <div class="favorites-container">
     {% for favorite in favorites %}

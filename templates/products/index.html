@@ -1,7 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
 
 {% block content %}
+<link href="{% static 'products/index.css' %}" rel="stylesheet">
 <h1>Lista produktów</h1>
 <form method="GET" action=".">
     <select name="category">

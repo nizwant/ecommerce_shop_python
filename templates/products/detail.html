@@ -1,7 +1,8 @@
 {% extends "base.html" %}
-
+{% load static %}
 
 {% block content %}
+<link href="{% static 'products/detail.css' %}" rel="stylesheet">
 <div class="product-detail">
     <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-image">
     <div class="product-info">

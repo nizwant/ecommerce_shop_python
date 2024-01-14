@@ -1,0 +1,29 @@
+ .product-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+     gap: 20px;
+ }
+
+ .product-card {
+     border: 1px solid #ccc;
+     padding: 20px;
+     text-align: center;
+     height: 300px;
+     position: relative;
+     transition: all 0.3s ease;
+ }
+
+ .product-card:hover {
+     transform: scale(1.05);
+     background-color: #f0f0f0;
+ }
+
+ .product-card img {
+     width: 100%;
+     height: auto;
+ }
+
+ .product-card a {
+     text-decoration: none;
+     color: inherit;
+ }
