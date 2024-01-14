@@ -10,10 +10,18 @@
 </head>
 
 <body>
+    {% if user.is_authenticated %}
     <div class="navbar">
         <a href="{% url 'index'%}">Lista Produktów</a>
-        <a class="signin" href="#signin">Zaloguj się</a>
+        <a class="signin" href="/accounts/logout/">Wyloguj się</a>
     </div>
+    {% else %}
+    <div class="navbar">
+        <a href="{% url 'index'%}">Lista Produktów</a>
+        <a class="signin" href="/accounts/login/">Zaloguj się</a>
+    </div>
+    {% endif %}
+
     {% block content %}
     {% endblock %}
 </body>
