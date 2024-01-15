@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import CartItem
+from .models import CartItem, Order, OrderItem
+from django.contrib import messages
+from .forms import OrderForm
 from product_page.models import Product
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
@@ -47,8 +49,28 @@ def remove_item(request):
 def finalize_order(request):
     cart_items = CartItem.objects.filter(user=request.user)
     total_price = sum(item.product.price * item.quantity for item in cart_items)
+    form = OrderForm(user=request.user)
     return render(
         request,
         "cart_and_orders/finalize_order.html",
-        {"cart_items": cart_items, "total_price": total_price},
+        {"cart_items": cart_items, "total_price": total_price, "form": form},
     )
+
+
+def place_order(request):
+    # # Get the user's cart items
+    # cart_items = CartItem.objects.filter(user=request.user)
+
+    # # Create a new order and add the cart items to it
+    # order = Order.objects.create(user=request.user)
+    # for item in cart_items:
+    #     order.items.add(item.product)
+
+    # # Clear the user's cart
+    # cart_items.delete()
+
+    # # Add a flash message
+    # messages.success(request, "Your order was saved correctly.")
+
+    # # Redirect to the product index page
+    return redirect("product_index")

@@ -8,4 +8,5 @@ urlpatterns = [
     path("update_quantity/", views.update_quantity, name="update_quantity"),
     path("remove_item/", views.remove_item, name="remove_item"),
     path("finalize_order/", views.finalize_order, name="finalize_order"),
+    path("place_order/", views.place_order, name="place_order"),
 ]

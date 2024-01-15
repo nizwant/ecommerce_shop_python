@@ -30,7 +30,11 @@
 
 <p class="total-price">Total Price: {{ total_price }}</p>
 
-tutaj bedzie form do wprowadzenia danych do wysylki deafultowe dane usera
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Place order">
+</form>
 <a href="{% url 'place_order' %}" class="order-button">Złóż zamówienie</a>
 
 
