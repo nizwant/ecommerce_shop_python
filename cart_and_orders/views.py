@@ -42,3 +42,13 @@ def remove_item(request):
     product_id = request.POST.get("product_id")
     CartItem.objects.filter(user=request.user, product_id=product_id).delete()
     return JsonResponse({"status": "ok"})
+
+
+def finalize_order(request):
+    cart_items = CartItem.objects.filter(user=request.user)
+    total_price = sum(item.product.price * item.quantity for item in cart_items)
+    return render(
+        request,
+        "cart_and_orders/finalize_order.html",
+        {"cart_items": cart_items, "total_price": total_price},
+    )

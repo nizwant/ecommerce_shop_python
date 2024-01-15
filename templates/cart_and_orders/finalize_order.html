@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .cart-item {
+        margin-bottom: 1em;
+    }
+
+    .cart-item h2 {
+        margin: 0;
+    }
+
+    .cart-item p {
+        margin: 0.5em 0;
+    }
+
+    .total-price {
+        font-weight: bold;
+        margin-top: 1em;
+    }
+
+    .order-button {
+        background-color: #007BFF;
+        color: white;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        margin-top: 1em;
+        display: inline-block;
+    }
+</style>
+
+<h1>Finalize Order</h1>
+
+{% for item in cart_items %}
+<div class="cart-item">
+    <h2>{{ item.product.name }}</h2>
+    <p>Quantity: {{ item.quantity }}</p>
+    <p>Price: {{ item.product.price }}</p>
+    <p>Total: {{ item.product.price|multiply:item.quantity }}</p>
+</div>
+{% endfor %}
+
+<p class="total-price">Total Price: {{ total_price }}</p>
+
+<a href="{% url 'place_order' %}" class="order-button">Order Product</a>
+{% endblock %}

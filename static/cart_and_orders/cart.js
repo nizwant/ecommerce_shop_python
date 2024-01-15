@@ -31,6 +31,9 @@ function updateTotalPrice(quantityInput) {
     totalElement.textContent = total.toFixed(2);
 }
 
+document.getElementById('finalizeOrder').addEventListener('click', function () {
+    location.href = '/orders/finalize_order/';
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     // Calculate and update the total and the grand total when the page is loaded
@@ -38,6 +41,22 @@ document.addEventListener('DOMContentLoaded', function () {
         updateTotalPrice(quantity);
     });
     updateGrandTotal();
+
+    document.querySelectorAll('.remove').forEach(function (button) {
+        button.addEventListener('click', function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/orders/remove_item/');
+            xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert('Item removed successfully');
+                    location.reload();
+                }
+            };
+            xhr.send('product_id=' + this.dataset.productId);
+        });
+    });
 
     // Event listener for quantity inputs
     document.querySelectorAll('.quantity').forEach(function (quantity) {
