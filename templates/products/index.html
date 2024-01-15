@@ -13,10 +13,10 @@
         onclick="this.parentElement.style.opacity='0'; setTimeout(() => this.parentElement.style.display='none', 600);">&times;</span>
 </div>
 {% endfor %}
-<h1>Lista produktów</h1>
+<h1>Product list</h1>
 <form method="GET" action=".">
     <select name="category">
-        <option value="">Wszystkie</option>
+        <option value="">Category</option>
         {% for category in category_list %}
         <option value="{{ category.id }}">{{ category.name }}</option>
         {% endfor %}
@@ -26,14 +26,14 @@
 
 <form method="GET" action=".">
     <select name="sort">
-        <option value="">Sortuj</option>
-        <option value="name_asc">Nazwa (A-Z)</option>
-        <option value="name_desc">Nazwa (Z-A)</option>
-        <option value="price_asc">Cena (rosnąco)</option>
-        <option value="price_desc">Cena (malejąco)</option>
-        <option value="popularity">Popularnosć</option>
+        <option value="">Sort</option>
+        <option value="name_asc">Name (A-Z)</option>
+        <option value="name_desc">Name (Z-A)</option>
+        <option value="price_asc">Price (ascending)</option>
+        <option value="price_desc">Price (descending)</option>
+        <option value="popularity">Popularity</option>
     </select>
-    <input type="submit" value="Sortuj">
+    <input type="submit" value="Sort">
 </form>
 {% if product_list %}
 <div class="product-grid">
@@ -48,6 +48,8 @@
     {% endfor %}
 </div>
 {% else %}
-<p>Brak produktów o takich parametrach</p>
+<p>
+    No products with such parameters
+</p>
 {% endif %}
 {% endblock %}

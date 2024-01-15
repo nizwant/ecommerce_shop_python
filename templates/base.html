@@ -12,21 +12,21 @@
 <body>
     {% if user.is_authenticated %}
     <div class="navbar">
-        <a href="{% url 'index'%}">Lista Produktów</a>
-        <p>Zalogowany jako: {{ user.username }}</p>
+        <a href="{% url 'index'%}">Product List</a>
+        <p>Logged as: {{ user.username }}</p>
 
-        <a class="signin" href="/accounts/logout/">Wyloguj się</a>
-        <a class="signin" href="/accounts/profile/">Profil</a>
-        <a class="signin" href="/orders/cart/">Koszyk</a>
-        <a class="signin" href="{% url 'favorites'%}">Ulubione</a>
+        <a class="signin" href="/accounts/logout/">Logout</a>
+        <a class="signin" href="/accounts/profile/">Profile</a>
+        <a class="signin" href="/orders/cart/">Cart</a>
+        <a class="signin" href="{% url 'favorites'%}">Wish List</a>
 
 
     </div>
     {% else %}
     <div class="navbar">
-        <a href="{% url 'index'%}">Lista Produktów</a>
-        <a class="signin" href="/accounts/register/">Zajerestruj się</a>
-        <a class="signin" href="/accounts/login/">Zaloguj się</a>
+        <a href="{% url 'index'%}">Product List</a>
+        <a class="signin" href="/accounts/register/">Register</a>
+        <a class="signin" href="/accounts/login/">Login</a>
     </div>
     {% endif %}
 

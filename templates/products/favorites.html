@@ -3,7 +3,7 @@
 
 {% block content %}
 <link href="{% static 'products/favorites.css' %}" rel="stylesheet">
-<h1>Moje ulubione produkty</h1>
+<h1>My Wish List</h1>
 <div class="favorites-container">
     {% for favorite in favorites %}
     <div class="favorite-item">
@@ -11,7 +11,7 @@
         <h2>{{ favorite.product.name }}</h2>
         <form action="{% url 'remove_from_favorites' favorite.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="Usuń z ulubionych" class="favorite-button">
+            <input type="submit" value="Remove from wish list" class="favorite-button">
         </form>
     </div>
     {% endfor %}

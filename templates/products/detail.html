@@ -18,14 +18,14 @@
         </div>
         <p class="product-price">{{ product.price }} zł</p>
         <div>
-            <a class="add-to-cart" href="{% url 'add_to_cart' product.id %}">Dodaj do koszyka</a>
+            <a class="add-to-cart" href="{% url 'add_to_cart' product.id %}">Add to cart</a>
         </div>
 
-        <a href="{% url 'add_to_favorites' product.id %}" class="favorite">Dodaj do ulubionych</a>
+        <a href="{% url 'add_to_favorites' product.id %}" class="favorite">Add to wish list</a>
     </div>
 </div>
 <div class="product-description">
-    <h2>Opis</h2>
+    <h2>Description</h2>
     <p>{{ product.description }}</p>
 </div>
 <p>Views: {{ product.view_count }}</p>
