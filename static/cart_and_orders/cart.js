@@ -1,50 +1,68 @@
-function updateTotal() {
-    var grandTotal = 0;
-    document.querySelectorAll('.total').forEach(function (total) {
-        grandTotal += parseFloat(total.textContent);
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to update the total price of an item
+    function updateTotalPrice(quantityInput) {
+        var price = parseFloat(quantityInput.dataset.price);
+        var quantity = parseInt(quantityInput.value);
+        var total = price * quantity;
+        var totalElement = quantityInput.parentElement.nextElementSibling.nextElementSibling;
+        totalElement.textContent = total.toFixed(2);
+    }
+
+    // Function to update the grand total
+    function updateGrandTotal() {
+        var grandTotal = 0;
+        document.querySelectorAll('.total').forEach(function (total) {
+            grandTotal += parseFloat(total.textContent);
+        });
+        document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
+    }
+
+    // Event listener for quantity inputs
+    document.querySelectorAll('.quantity').forEach(function (quantity) {
+        quantity.addEventListener('change', function () {
+            if (this.value == 0) {
+                // Remove item if quantity is 0
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/orders/remove_item/');
+                xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        alert('Item removed successfully');
+                        location.reload();
+                    }
+                };
+                xhr.send('product_id=' + this.dataset.productId);
+            } else {
+                // Update quantity
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/orders/update_quantity/');
+                xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        alert('Quantity updated successfully');
+                        updateTotalPrice(quantity);
+                        updateGrandTotal();
+                    }
+                };
+                xhr.send('product_id=' + this.dataset.productId + '&quantity=' + this.value);
+            }
+        });
     });
-    document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
+});
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }
-
-document.querySelectorAll('.quantity').forEach(function (quantity) {
-    quantity.addEventListener('change', function () {
-        var price = parseFloat(this.dataset.price);
-        var total = this.value * price;
-        this.parentElement.nextElementSibling.nextElementSibling.textContent = total.toFixed(2);
-        updateTotal();
-
-        // Send AJAX request to update quantity
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/update_quantity/');
-        xhr.setRequestHeader('X-CSRFToken', document.getElementById('csrfToken').value);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                console.log('Quantity updated');
-            }
-        };
-        xhr.send('product_id=' + this.dataset.productId + '&quantity=' + this.value);
-    });
-});
-
-document.querySelectorAll('.remove').forEach(function (remove) {
-    remove.addEventListener('click', function () {
-        var row = this.parentElement.parentElement;
-        row.parentElement.removeChild(row);
-        updateTotal();
-
-        // Send AJAX request to remove item
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/remove_item/');
-        xhr.setRequestHeader('X-CSRFToken', document.getElementById('csrfToken').value);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                console.log('Item removed');
-            }
-        };
-        xhr.send('product_id=' + this.dataset.productId);
-    });
-});
-
-updateTotal();
