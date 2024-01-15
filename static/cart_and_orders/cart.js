@@ -1,21 +1,38 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Function to update the total price of an item
-    function updateTotalPrice(quantityInput) {
-        var price = parseFloat(quantityInput.dataset.price);
-        var quantity = parseInt(quantityInput.value);
-        var total = price * quantity;
-        var totalElement = quantityInput.parentElement.nextElementSibling.nextElementSibling;
-        totalElement.textContent = total.toFixed(2);
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
     }
+    return cookieValue;
+}
 
-    // Function to update the grand total
-    function updateGrandTotal() {
-        var grandTotal = 0;
-        document.querySelectorAll('.total').forEach(function (total) {
-            grandTotal += parseFloat(total.textContent);
-        });
-        document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
-    }
+// Function to update the grand total
+function updateGrandTotal() {
+    var grandTotal = 0;
+    document.querySelectorAll('.total').forEach(function (total) {
+        grandTotal += parseFloat(total.textContent);
+    });
+    document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
+}
+
+// Function to update the total price of an item
+function updateTotalPrice(quantityInput) {
+    var price = parseFloat(quantityInput.dataset.price);
+    var quantity = parseInt(quantityInput.value);
+    var total = price * quantity;
+    var totalElement = quantityInput.parentElement.nextElementSibling.nextElementSibling;
+    totalElement.textContent = total.toFixed(2);
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
 
     // Event listener for quantity inputs
     document.querySelectorAll('.quantity').forEach(function (quantity) {
@@ -52,17 +69,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
