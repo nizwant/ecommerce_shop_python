@@ -3,6 +3,7 @@ from django.contrib.sessions.models import Session
 from .models import Product, FavoriteProduct, Category
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -45,6 +46,7 @@ def add_to_favorites(request, product_id):
     session = Session.objects.get(session_key=request.session.session_key)
     if not FavoriteProduct.objects.filter(session=session, product=product).exists():
         FavoriteProduct.objects.create(session=session, product=product)
+        messages.success(request, "Product added to favorites!")
     return redirect("index")
 
 

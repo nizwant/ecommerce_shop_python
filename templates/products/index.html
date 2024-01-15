@@ -4,6 +4,15 @@
 
 {% block content %}
 <link href="{% static 'products/index.css' %}" rel="stylesheet">
+{% for message in messages %}
+<link rel="stylesheet" href="{% static 'popup.css' %}">
+<script src="{% static 'popup.js' %}"></script>
+<div class="alert" id="alert">
+    {{ message }}
+    <span class="closebtn"
+        onclick="this.parentElement.style.opacity='0'; setTimeout(() => this.parentElement.style.display='none', 600);">&times;</span>
+</div>
+{% endfor %}
 <h1>Lista produktów</h1>
 <form method="GET" action=".">
     <select name="category">
@@ -16,7 +25,6 @@
 </form>
 
 <form method="GET" action=".">
-    <!-- ... -->
     <select name="sort">
         <option value="">Sortuj</option>
         <option value="name_asc">Nazwa (A-Z)</option>
