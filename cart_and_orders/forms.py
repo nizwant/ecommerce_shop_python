@@ -18,6 +18,17 @@ class OrderForm(forms.ModelForm):
             "shipping_city",
             "shipping_method",
         ]
+        labels = {
+            "shipping_first_name": "First name",
+            "shipping_last_name": "Last name",
+            "shipping_email": "Email",
+            "shipping_phone_number": "Phone number",
+            "shipping_street_name": "Street name",
+            "shipping_street_number": "Street number",
+            "shipping_house_number": "House number",
+            "shipping_zip_code": "Zip code",
+            "shipping_city": "City",
+        }
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop("user", None)

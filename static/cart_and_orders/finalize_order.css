@@ -45,3 +45,38 @@ th {
 img {
     width: 100px;
 }
+
+.total-price {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.order-button {
+    background-color: #4CAF50;
+    /* Green background */
+    border: none;
+    /* Remove border */
+    color: white;
+    /* White text */
+    padding: 15px 32px;
+    /* Some padding */
+    text-align: center;
+    /* Centered text */
+    text-decoration: none;
+    /* Remove underline */
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    /* Mouse pointer on hover */
+    transition-duration: 0.4s;
+    /* Transition effect */
+    border-radius: 50px;
+}
+
+.order-button:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}

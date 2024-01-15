@@ -21,14 +21,14 @@
             <td><img src="{{ item.product.main_image.url }}" alt="{{ item.product.name }}"></td>
             <td>{{ item.product.name }}</td>
             <td>{{ item.quantity }}</td>
-            <td>{{ item.product.price }}</td>
-            <td>{{ item.total }}</td>
+            <td>{{ item.product.price }} zł</td>
+            <td>{{ item.total }} zł</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<p class="total-price">Total Price: {{ total_price }}</p>
+<p class="total-price">Total Price: {{ total_price }} zł</p>
 
 <form method="post" action="{% url 'place_order' %}">
     {% csrf_token %}
