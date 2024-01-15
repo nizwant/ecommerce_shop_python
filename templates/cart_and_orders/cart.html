@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+<link href="{% static 'cart_and_orders/cart.css' %}" rel="stylesheet">
+<script src="{% static 'cart_and_orders/cart.js' %}"></script>
 <h2>Your Cart</h2>
 <table>
     <tr>
@@ -24,34 +27,4 @@
     {% endfor %}
 </table>
 <p>Total: <span id="grandTotal"></span></p>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-    function updateTotal() {
-        var grandTotal = 0;
-        document.querySelectorAll('.total').forEach(function (total) {
-            grandTotal += parseFloat(total.textContent);
-        });
-        document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
-    }
-
-    document.querySelectorAll('.quantity').forEach(function (quantity) {
-        quantity.addEventListener('change', function () {
-            var price = parseFloat(this.dataset.price);
-            var total = this.value * price;
-            this.parentElement.nextElementSibling.nextElementSibling.textContent = total.toFixed(2);
-            updateTotal();
-        });
-    });
-
-    document.querySelectorAll('.remove').forEach(function (remove) {
-        remove.addEventListener('click', function () {
-            this.parentElement.parentElement.remove();
-            updateTotal();
-        });
-    });
-
-    updateTotal();
-</script>
 {% endblock %}
