@@ -15,7 +15,7 @@
  .favorite:hover {
      background-color: white;
      color: black;
-     border: 2px solid #007BFF;
+     border: 2px solid #000000;
  }
 
  .add-to-cart {
@@ -32,7 +32,9 @@
  }
 
  .add-to-cart:hover {
-     background-color: #0056b3;
+     background-color: white;
+     color: black;
+     border: 2px solid #007BFF;
  }
 
  .product-price {

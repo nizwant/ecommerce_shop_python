@@ -42,5 +42,24 @@
 .favorite-button:hover {
     background-color: white;
     color: black;
+    border: 2px solid #000000;
+}
+
+.add-to-cart {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: white;
+    color: black;
     border: 2px solid #007BFF;
 }
