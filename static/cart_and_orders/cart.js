@@ -28,7 +28,7 @@ function updateTotalPrice(quantityInput) {
     var quantity = parseInt(quantityInput.value);
     var total = price * quantity;
     var totalElement = quantityInput.parentElement.nextElementSibling.nextElementSibling;
-    totalElement.textContent = total.toFixed(2);
+    totalElement.textContent = total.toFixed(2) + " zł";
 }
 
 document.addEventListener('DOMContentLoaded', function () {

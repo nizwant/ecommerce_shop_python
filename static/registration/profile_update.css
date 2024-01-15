@@ -20,12 +20,13 @@
     width: 100%;
     padding: 10px;
     margin-top: 20px;
-    background-color: #4CAF50;
+    background-color: #359b74;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 50px;
 }
 
 .profile-update-form input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #02461d;
 }

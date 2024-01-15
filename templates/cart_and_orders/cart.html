@@ -4,7 +4,7 @@
 {% block content %}
 <link href="{% static 'cart_and_orders/cart.css' %}" rel="stylesheet">
 <script src="{% static 'cart_and_orders/cart.js' %}"></script>
-<h2>Your Cart</h2>
+<h1>Your Cart</h1>
 <table>
     <tr>
         <th>Product</th>
@@ -20,12 +20,12 @@
             <input type="number" min="1" value="{{ item.quantity }}" data-price="{{ item.product.price }}"
                 class="quantity" data-product-id="{{ item.product.id }}">
         </td>
-        <td>{{ item.product.price }}</td>
-        <td class="total">{{ item.total }}</td>
+        <td>{{ item.product.price }} zł</td>
+        <td class="total">{{ item.total }} zł</td>
         <td><button class="remove" data-product-id="{{ item.product.id }}">Remove</button></td>
     </tr>
     {% endfor %}
 </table>
-<p>Total: <span id="grandTotal"></span></p>
-<button id="finalizeOrder">Finalize Order</button>
+<p class="total-text">Total: <span id="grandTotal"></span> zł</p>
+<button id="finalizeOrder" class="finalize-button">Finalize Order</button>
 {% endblock %}
