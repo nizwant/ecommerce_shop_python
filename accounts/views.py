@@ -6,6 +6,7 @@ from django.views.generic.edit import UpdateView
 from .models import UserProfile
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
+from cart_and_orders.models import Order
 
 
 def register(request):
@@ -22,8 +23,12 @@ def register(request):
 @login_required
 def user_profile_detail_view(request):
     user_profile = request.user.userprofile
+    orders = Order.objects.filter(user=request.user)
+    orders = orders.order_by("-created_at")
     return render(
-        request, "registration/profile_detail.html", {"user_profile": user_profile}
+        request,
+        "registration/profile_detail.html",
+        {"user_profile": user_profile, "orders": orders},
     )
 
 
