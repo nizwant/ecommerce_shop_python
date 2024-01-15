@@ -62,7 +62,13 @@ def place_order(request):
     form = OrderForm(request.POST, user=request.user)
     if form.is_valid():
         # Create a new order using the form data
-        order = Order.objects.create(user=request.user, **form.cleaned_data)
+        total_price = sum(
+            item.product.price * item.quantity
+            for item in CartItem.objects.filter(user=request.user)
+        )
+        order = Order.objects.create(
+            user=request.user, total_price=total_price, **form.cleaned_data
+        )
 
         # Get the user's cart items
         cart_items = CartItem.objects.filter(user=request.user)
