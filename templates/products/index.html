@@ -14,35 +14,43 @@
 </div>
 {% endfor %}
 <h1>Product list</h1>
-<form method="GET" action=".">
-    <select name="category">
-        <option value="">Category</option>
-        {% for category in category_list %}
-        <option value="{{ category.id }}">{{ category.name }}</option>
-        {% endfor %}
-    </select>
-    <input type="submit" value="Filter">
-</form>
+<div class="form-container">
+    <!-- Category form -->
+    <form method="GET" action="." class="filter-form">
+        <label for="category">Category:</label>
+        <select name="category" id="category">
+            <option value="">All Products</option>
+            {% for category in category_list %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Filter">
+    </form>
 
-<form method="GET" action=".">
-    <select name="sort">
-        <option value="">Sort</option>
-        <option value="name_asc">Name (A-Z)</option>
-        <option value="name_desc">Name (Z-A)</option>
-        <option value="price_asc">Price (ascending)</option>
-        <option value="price_desc">Price (descending)</option>
-        <option value="popularity">Popularity</option>
-    </select>
-    <input type="submit" value="Sort">
-</form>
+    <!-- Sort form -->
+    <form method="GET" action="." class="filter-form">
+        <label for="sort">Sort:</label>
+        <select name="sort" id="sort">
+            <option value="">Default</option>
+            <option value="name_asc">Name (A-Z)</option>
+            <option value="name_desc">Name (Z-A)</option>
+            <option value="price_asc">Price (ascending)</option>
+            <option value="price_desc">Price (descending)</option>
+            <option value="popularity">Popularity</option>
+        </select>
+        <input type="submit" value="Sort">
+    </form>
+</div>
 {% if product_list %}
 <div class="product-grid">
     {% for product in product_list %}
     <div class="product-card">
         <a href="{% url 'detail' product.id %}">
             <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
-            <h2>{{ product.name }}</h2>
-            <p>{{ product.price }}</p>
+            <div class="product-info">
+                <h2>{{ product.name }}</h2>
+                <p class="product-price">{{ product.price }} zł</p>
+            </div>
         </a>
     </div>
     {% endfor %}

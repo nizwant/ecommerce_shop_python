@@ -27,3 +27,22 @@
      text-decoration: none;
      color: inherit;
  }
+
+ .product-price {
+     font-size: 1.5em;
+ }
+
+ .form-container {
+     display: flex;
+     margin-bottom: 20px;
+ }
+
+ .filter-form {
+     display: flex;
+     gap: 10px;
+     margin-right: 100px;
+ }
+
+ .filter-form label {
+     margin-right: 10px;
+ }
