@@ -1,48 +1,52 @@
- .product-grid {
-     display: grid;
-     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-     gap: 20px;
- }
+  .content {
+      margin: 20px;
+  }
 
- .product-card {
-     border: 1px solid #ccc;
-     padding: 20px;
-     text-align: center;
-     height: 300px;
-     position: relative;
-     transition: all 0.3s ease;
- }
+  .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+  }
 
- .product-card:hover {
-     transform: scale(1.05);
-     background-color: #f0f0f0;
- }
+  .product-card {
+      border: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+      height: 300px;
+      position: relative;
+      transition: all 0.3s ease;
+  }
 
- .product-card img {
-     width: 100%;
-     height: auto;
- }
+  .product-card:hover {
+      transform: scale(1.05);
+      background-color: #f0f0f0;
+  }
 
- .product-card a {
-     text-decoration: none;
-     color: inherit;
- }
+  .product-card img {
+      width: 100%;
+      height: auto;
+  }
 
- .product-price {
-     font-size: 1.5em;
- }
+  .product-card a {
+      text-decoration: none;
+      color: inherit;
+  }
 
- .form-container {
-     display: flex;
-     margin-bottom: 20px;
- }
+  .product-price {
+      font-size: 1.5em;
+  }
 
- .filter-form {
-     display: flex;
-     gap: 10px;
-     margin-right: 100px;
- }
+  .form-container {
+      display: flex;
+      margin-bottom: 20px;
+  }
 
- .filter-form label {
-     margin-right: 10px;
- }
+  .filter-form {
+      display: flex;
+      gap: 10px;
+      margin-right: 100px;
+  }
+
+  .filter-form label {
+      margin-right: 10px;
+  }
