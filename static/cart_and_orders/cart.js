@@ -33,6 +33,11 @@ function updateTotalPrice(quantityInput) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+    // Calculate and update the total and the grand total when the page is loaded
+    document.querySelectorAll('.quantity').forEach(function (quantity) {
+        updateTotalPrice(quantity);
+    });
+    updateGrandTotal();
 
     // Event listener for quantity inputs
     document.querySelectorAll('.quantity').forEach(function (quantity) {
@@ -59,13 +64,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 xhr.onload = function () {
                     if (xhr.status === 200) {
                         alert('Quantity updated successfully');
-                        updateTotalPrice(quantity);
-                        updateGrandTotal();
                     }
                 };
                 xhr.send('product_id=' + this.dataset.productId + '&quantity=' + this.value);
+
+                // Update totals immediately after quantity is changed
+                updateTotalPrice(this);
+                updateGrandTotal();
             }
         });
     });
 });
-
