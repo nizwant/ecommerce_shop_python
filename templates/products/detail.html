@@ -4,7 +4,9 @@
 {% block content %}
 <link href="{% static 'products/detail.css' %}" rel="stylesheet">
 <div class="product-detail">
-    <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-image">
+    <div class="product-image-wrapper">
+        <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-image">
+    </div>
     <div class="product-info">
         <h1>{{ product.name }}</h1>
         <div class="product-rating">
@@ -27,6 +29,7 @@
 <div class="product-description">
     <h2>Description</h2>
     <p>{{ product.description }}</p>
+    <p>Views: {{ product.view_count }}</p>
 </div>
-<p>Views: {{ product.view_count }}</p>
+
 {% endblock %}

@@ -4,19 +4,17 @@
 {% block content %}
 <link href="{% static 'registration/login.css' %}" rel="stylesheet">
 {% if form.errors %}
-<p>
-    Twój login i hasło nie pasują. Spróbuj ponownie.</p>
-</p>
+<p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 
 {% if next %}
 {% if user.is_authenticated %}
 <p>
-    Twoje konto nie ma dostępu do tej strony. Aby kontynuować,
-    zaloguj się na konto z dostępem.</p>
+    Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.
 </p>
 {% else %}
-<p>Zaloguj się żeby zobaczyć tą stronę</p>
+<p>Login to see this page.</p>
 {% endif %}
 {% endif %}
 <div class="center-div">
@@ -26,20 +24,20 @@
 
             <table class="login-table">
                 <tr>
-                    <td>Nazwa użytkownika:</td>
+                    <td>Username:</td>
                     <td>{{ form.username }}</td>
                 </tr>
                 <tr>
-                    <td>Hasło:</td>
+                    <td>Password:</td>
                     <td>{{ form.password }}</td>
                 </tr>
             </table>
 
-            <input type="submit" value="Zaloguj" class="login-button">
+            <input type="submit" value="Login" class="login-button">
             <input type="hidden" name="next" value="{{ next }}">
         </form>
         <div>
-            <p><a href="{% url 'password_reset' %}">Zapomniałes hasła?</a></p>
+            <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
         </div>
     </div>
 
