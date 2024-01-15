@@ -57,20 +57,33 @@ def finalize_order(request):
     )
 
 
+@require_POST
 def place_order(request):
-    # # Get the user's cart items
-    # cart_items = CartItem.objects.filter(user=request.user)
+    form = OrderForm(request.POST, user=request.user)
+    if form.is_valid():
+        # Create a new order using the form data
+        order = Order.objects.create(user=request.user, **form.cleaned_data)
 
-    # # Create a new order and add the cart items to it
-    # order = Order.objects.create(user=request.user)
-    # for item in cart_items:
-    #     order.items.add(item.product)
+        # Get the user's cart items
+        cart_items = CartItem.objects.filter(user=request.user)
 
-    # # Clear the user's cart
-    # cart_items.delete()
+        # Create OrderItem instances for each cart item and add them to the order
+        for item in cart_items:
+            OrderItem.objects.create(
+                order=order,
+                product_name=item.product.name,
+                quantity=item.quantity,
+                product_price=item.product.price,
+            )
 
-    # # Add a flash message
-    # messages.success(request, "Your order was saved correctly.")
+        # Clear the user's cart
+        cart_items.delete()
 
-    # # Redirect to the product index page
-    return redirect("product_index")
+        # Add a flash message
+        messages.success(request, "Your order was placed successfully.")
+
+        # Redirect to the product index page
+        return redirect("/products/")
+    else:
+        # If the form is not valid, re-render the order form
+        return render(request, "cart_and_orders/finalize_order.html", {"form": form})

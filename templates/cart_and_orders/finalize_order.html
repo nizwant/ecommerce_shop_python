@@ -30,12 +30,11 @@
 
 <p class="total-price">Total Price: {{ total_price }}</p>
 
-<form method="post">
+<form method="post" action="{% url 'place_order' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Place order">
+    <input type="submit" class="order-button" value="Złóż zamówienie">
 </form>
-<a href="{% url 'place_order' %}" class="order-button">Złóż zamówienie</a>
 
 
 {% endblock %}
