@@ -1,5 +1,57 @@
 {% extends "base.html" %}
 
 {% block content %}
-Hello
+<h2>Your Cart</h2>
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th></th>
+    </tr>
+    {% for item in cart_items %}
+    <tr>
+        <td>{{ item.product.name }}</td>
+        <td>
+            <input type="number" min="1" value="{{ item.quantity }}" data-price="{{ item.product.price }}"
+                class="quantity">
+        </td>
+        <td>{{ item.product.price }}</td>
+        <td class="total">{{ item.total }}</td>
+        <td><button class="remove">Remove</button></td>
+    </tr>
+    {% endfor %}
+</table>
+<p>Total: <span id="grandTotal"></span></p>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function updateTotal() {
+        var grandTotal = 0;
+        document.querySelectorAll('.total').forEach(function (total) {
+            grandTotal += parseFloat(total.textContent);
+        });
+        document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
+    }
+
+    document.querySelectorAll('.quantity').forEach(function (quantity) {
+        quantity.addEventListener('change', function () {
+            var price = parseFloat(this.dataset.price);
+            var total = this.value * price;
+            this.parentElement.nextElementSibling.nextElementSibling.textContent = total.toFixed(2);
+            updateTotal();
+        });
+    });
+
+    document.querySelectorAll('.remove').forEach(function (remove) {
+        remove.addEventListener('click', function () {
+            this.parentElement.parentElement.remove();
+            updateTotal();
+        });
+    });
+
+    updateTotal();
+</script>
 {% endblock %}

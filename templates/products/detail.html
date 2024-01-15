@@ -18,7 +18,7 @@
         </div>
         <p class="product-price">{{ product.price }} zł</p>
         <div>
-            <button class="add-to-cart">Dodaj do koszyka</button>
+            <a class="add-to-cart" href="{% url 'add_to_cart' product.id %}">Dodaj do koszyka</a>
         </div>
 
         <a href="{% url 'add_to_favorites' product.id %}" class="favorite">Dodaj do ulubionych</a>

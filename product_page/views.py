@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.sessions.models import Session
-from .models import Product, Category
-from .models import Product, FavoriteProduct
+from .models import Product, FavoriteProduct, Category
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -47,12 +48,10 @@ def add_to_favorites(request, product_id):
     return redirect("index")
 
 
+@login_required
 def favorites(request):
     favorites = FavoriteProduct.objects.filter(session=request.session.session_key)
     return render(request, "products/favorites.html", {"favorites": favorites})
-
-
-from django.views.decorators.http import require_POST
 
 
 @require_POST
