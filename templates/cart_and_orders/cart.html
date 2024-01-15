@@ -18,11 +18,11 @@
         <td>{{ item.product.name }}</td>
         <td>
             <input type="number" min="1" value="{{ item.quantity }}" data-price="{{ item.product.price }}"
-                class="quantity">
+                class="quantity" data-product-id="{{ item.product.id }}">
         </td>
         <td>{{ item.product.price }}</td>
         <td class="total">{{ item.total }}</td>
-        <td><button class="remove">Remove</button></td>
+        <td><button class="remove" data-product-id="{{ item.product.id }}">Remove</button></td>
     </tr>
     {% endfor %}
 </table>

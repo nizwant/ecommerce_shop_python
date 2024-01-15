@@ -34,3 +34,11 @@ def update_quantity(request):
     cart_item.quantity = quantity
     cart_item.save()
     return JsonResponse({"status": "ok"})
+
+
+@csrf_exempt
+@require_POST
+def remove_item(request):
+    product_id = request.POST.get("product_id")
+    CartItem.objects.filter(user=request.user, product_id=product_id).delete()
+    return JsonResponse({"status": "ok"})
