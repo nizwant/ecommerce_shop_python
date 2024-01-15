@@ -31,10 +31,6 @@ function updateTotalPrice(quantityInput) {
     totalElement.textContent = total.toFixed(2);
 }
 
-document.getElementById('finalizeOrder').addEventListener('click', function () {
-    location.href = '/orders/finalize_order/';
-});
-
 document.addEventListener('DOMContentLoaded', function () {
     // Calculate and update the total and the grand total when the page is loaded
     document.querySelectorAll('.quantity').forEach(function (quantity) {
@@ -56,6 +52,10 @@ document.addEventListener('DOMContentLoaded', function () {
             };
             xhr.send('product_id=' + this.dataset.productId);
         });
+    });
+
+    document.getElementById('finalizeOrder').addEventListener('click', function () {
+        location.href = '/orders/finalize_order/';
     });
 
     // Event listener for quantity inputs

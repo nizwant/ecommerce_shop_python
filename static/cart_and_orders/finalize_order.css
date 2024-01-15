@@ -1,0 +1,47 @@
+.cart-item {
+    margin-bottom: 1em;
+}
+
+.cart-item h2 {
+    margin: 0;
+}
+
+.cart-item p {
+    margin: 0.5em 0;
+}
+
+.total-price {
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+.order-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    margin-top: 1em;
+    display: inline-block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 0.5em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+img {
+    width: 100px;
+}
