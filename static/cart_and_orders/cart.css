@@ -53,3 +53,65 @@ th {
     color: black;
     border: 2px solid #4CAF50;
 }
+
+#toast {
+    visibility: hidden;
+    max-width: 50%;
+    margin: auto;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    top: 60px;
+    right: -50%;
+    font-size: 17px;
+}
+
+#toast.show {
+    visibility: visible;
+    -webkit-animation: slidein 0.5s forwards, slideout 0.5s 2.5s forwards;
+    animation: slidein 0.5s forwards, slideout 0.5s 2.5s forwards;
+}
+
+@-webkit-keyframes slidein {
+    from {
+        right: -50%;
+    }
+
+    to {
+        right: 0;
+    }
+}
+
+@keyframes slidein {
+    from {
+        right: -50%;
+    }
+
+    to {
+        right: 0;
+    }
+}
+
+@-webkit-keyframes slideout {
+    from {
+        right: 0;
+    }
+
+    to {
+        right: -50%;
+    }
+}
+
+@keyframes slideout {
+    from {
+        right: 0;
+    }
+
+    to {
+        right: -50%;
+    }
+}

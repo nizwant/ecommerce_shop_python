@@ -31,6 +31,13 @@ function updateTotalPrice(quantityInput) {
     totalElement.textContent = total.toFixed(2) + " zł";
 }
 
+function showToast(message) {
+    var toast = document.getElementById("toast");
+    toast.className = "show";
+    toast.innerText = message;
+    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     // Calculate and update the total and the grand total when the page is loaded
     document.querySelectorAll('.quantity').forEach(function (quantity) {
@@ -46,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function () {
                 if (xhr.status === 200) {
-                    alert('Item removed successfully');
+                    showToast('Item removed successfully');
                     location.reload();
                 }
             };
@@ -69,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onload = function () {
                     if (xhr.status === 200) {
-                        alert('Item removed successfully');
+                        showToast('Item removed successfully');
                         location.reload();
                     }
                 };
@@ -82,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onload = function () {
                     if (xhr.status === 200) {
-                        alert('Quantity updated successfully');
+                        showToast('Quantity updated successfully');
                     }
                 };
                 xhr.send('product_id=' + this.dataset.productId + '&quantity=' + this.value);
