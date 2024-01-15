@@ -1,0 +1,31 @@
+.register-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 50px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.register-form .btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-form .btn:hover {
+    background-color: #0056b3;
+    /* Darker blue on hover */
+}

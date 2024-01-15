@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+<link href="{% static 'registration/register.css' %}" rel="stylesheet">
 <div class="center-div">
     <form class="register-form" action="" method="post">
         {% csrf_token %}
