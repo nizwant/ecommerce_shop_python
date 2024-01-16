@@ -41,6 +41,7 @@ def detail(request, product_id):
     return render(request, "products/detail.html", {"product": product})
 
 
+@login_required
 def add_to_favorites(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     session = Session.objects.get(session_key=request.session.session_key)

@@ -6,14 +6,17 @@ from product_page.models import Product
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required
 def cart(request):
     cart_items = CartItem.objects.filter(user=request.user)
     return render(request, "cart_and_orders/cart.html", {"cart_items": cart_items})
 
 
+@login_required
 def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     cart_item, created = CartItem.objects.get_or_create(
@@ -46,6 +49,7 @@ def remove_item(request):
     return JsonResponse({"status": "ok"})
 
 
+@login_required
 def finalize_order(request):
     cart_items = CartItem.objects.filter(user=request.user)
     total_price = sum(item.product.price * item.quantity for item in cart_items)
@@ -58,9 +62,16 @@ def finalize_order(request):
 
 
 @require_POST
+@login_required
 def place_order(request):
     form = OrderForm(request.POST, user=request.user)
     if form.is_valid():
+        # Get the user's cart items
+        cart_items = CartItem.objects.filter(user=request.user)
+        if not cart_items:
+            messages.error(request, "Your cart is empty. Please add some products.")
+            return redirect("/products/")
+
         # Create a new order using the form data
         total_price = sum(
             item.product.price * item.quantity
@@ -69,9 +80,6 @@ def place_order(request):
         order = Order.objects.create(
             user=request.user, total_price=total_price, **form.cleaned_data
         )
-
-        # Get the user's cart items
-        cart_items = CartItem.objects.filter(user=request.user)
 
         # Create OrderItem instances for each cart item and add them to the order
         for item in cart_items:
