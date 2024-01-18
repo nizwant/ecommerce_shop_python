@@ -32,12 +32,14 @@
     <div>Total Price</div>
 </div>
 {% for order in orders %}
-<div class="order">
-    <div>{{ order.created_at }}</div>
-    <div>{{ order.shipping_status }}</div>
-    <div>{{ order.shipping_method }}</div>
-    <div>{{ order.total_price }} zł</div>
-</div>
+<a href="{% url 'profile_order' order_id=order.id %}" class="order-link">
+    <div class="order">
+        <div>{{ order.created_at }}</div>
+        <div>{{ order.shipping_status }}</div>
+        <div>{{ order.shipping_method }}</div>
+        <div>{{ order.total_price }} zł</div>
+    </div>
+</a>
 {% empty %}
 <p>No orders yet.</p>
 {% endfor %}
