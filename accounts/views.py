@@ -34,8 +34,13 @@ def user_profile_detail_view(request):
 
 @login_required
 def user_profile_order_view(request, order_id):
-    order = OrderItem.objects.filter(order_id=order_id)
-    return render(request, "registration/profile_order.html", {"order": order})
+    order = Order.objects.get(id=order_id)
+    order_items = OrderItem.objects.filter(order_id=order_id)
+    return render(
+        request,
+        "registration/profile_order.html",
+        {"order": order, "order_items": order_items},
+    )
 
 
 class UserProfileUpdateView(LoginRequiredMixin, UpdateView):

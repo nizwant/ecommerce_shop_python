@@ -3,5 +3,35 @@
 
 {% block content %}
 <link href="{% static 'registration/profile_order.css' %}" rel="stylesheet">
-hi
+<h1>Order Details</h1>
+
+<p>Name: {{ order.shipping_first_name }} {{ order.shipping_last_name }}</p>
+<p>Email: {{ order.shipping_email }}</p>
+<p>Phone Number: {{ order.shipping_phone_number }}</p>
+<p>Date of placing order: {{ order.created_at }}</p>
+<p>Shipping Address: {{ order.shipping_street_number }} {{ order.shipping_house_number }}, {{
+    order.shipping_street_name}}, {{ order.shipping_zip_code }}, {{ order.shipping_city }}</p>
+<p>Shipping Method: {{ order.get_shipping_method_display }}</p>
+<p>Shipping Status: {{ order.shipping_status }}</p>
+
+<h2>Order Items</h2>
+<table>
+    <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+    {% for item in order.items.all %}
+    <tr>
+        <td>{{ item.product_name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.product_price }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">No items in this order.</td>
+    </tr>
+    {% endfor %}
+</table>
+<p class="total-text">Total Price: {{ order.total_price }} zł</p>
 {% endblock %}
