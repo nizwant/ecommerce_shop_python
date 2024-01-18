@@ -9,8 +9,8 @@
 <p>Email: {{ order.shipping_email }}</p>
 <p>Phone Number: {{ order.shipping_phone_number }}</p>
 <p>Date of placing order: {{ order.created_at }}</p>
-<p>Shipping Address: {{ order.shipping_street_number }} {{ order.shipping_house_number }}, {{
-    order.shipping_street_name}}, {{ order.shipping_zip_code }}, {{ order.shipping_city }}</p>
+<p>Shipping Address: {{order.shipping_street_name}} {{ order.shipping_street_number}}/{{order.shipping_house_number}},
+    {{order.shipping_zip_code }}, {{ order.shipping_city }}</p>
 <p>Shipping Method: {{ order.get_shipping_method_display }}</p>
 <p>Shipping Status: {{ order.shipping_status }}</p>
 
