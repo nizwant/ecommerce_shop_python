@@ -1,11 +1,9 @@
 from django.test import TestCase, Client
 from decimal import Decimal
-from .models import Product, Category, FavoriteProduct
+from .models import Product, Category
 from django.urls import reverse
 from django.contrib.auth.models import User
-from django.contrib.sessions.middleware import SessionMiddleware
 from django.test.client import RequestFactory
-from django.contrib.sessions.models import Session
 
 
 class ProductModelTest(TestCase):
