@@ -37,6 +37,7 @@
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 50px;
+    border: 2px solid transparent;
 }
 
 .favorite-button:hover {
@@ -56,6 +57,7 @@
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    border: 2px solid transparent;
 }
 
 .add-to-cart:hover {

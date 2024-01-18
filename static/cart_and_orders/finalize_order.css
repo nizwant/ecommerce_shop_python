@@ -54,25 +54,18 @@ img {
 
 .order-button {
     background-color: #4CAF50;
-    /* Green background */
     border: none;
-    /* Remove border */
     color: white;
-    /* White text */
     padding: 15px 32px;
-    /* Some padding */
     text-align: center;
-    /* Centered text */
     text-decoration: none;
-    /* Remove underline */
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    /* Mouse pointer on hover */
     transition-duration: 0.4s;
-    /* Transition effect */
     border-radius: 50px;
+    border: 2px solid transparent;
 }
 
 .order-button:hover {

@@ -1,3 +1,8 @@
+.content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -46,6 +51,7 @@ th {
     cursor: pointer;
     transition-duration: 0.4s;
     border-radius: 50px;
+    border: 2px solid transparent;
 }
 
 .finalize-button:hover {
