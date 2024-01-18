@@ -3,7 +3,7 @@
 
 {% block content %}
 <link href="{% static 'products/favorites.css' %}" rel="stylesheet">
-<h1>My Wish List</h1>
+<h1 class="wish-label">My Wish List</h1>
 <div class="favorites-container">
     {% for favorite in favorites %}
     <div class="favorite-item">

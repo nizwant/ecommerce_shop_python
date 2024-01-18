@@ -65,3 +65,7 @@
     color: black;
     border: 2px solid #007BFF;
 }
+
+.wish-label {
+    margin-left: 20px;
+}
