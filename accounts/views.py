@@ -6,7 +6,7 @@ from django.views.generic.edit import UpdateView
 from .models import UserProfile
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
-from cart_and_orders.models import Order
+from cart_and_orders.models import Order, OrderItem
 
 
 def register(request):
@@ -30,6 +30,12 @@ def user_profile_detail_view(request):
         "registration/profile_detail.html",
         {"user_profile": user_profile, "orders": orders},
     )
+
+
+@login_required
+def user_profile_order_view(request, order_id):
+    order = OrderItem.objects.filter(order_id=order_id)
+    return render(request, "registration/profile_order.html", {"order": order})
 
 
 class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
