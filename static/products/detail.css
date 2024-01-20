@@ -1,16 +1,8 @@
  .favorite {
-     display: inline-block;
      background-color: #000000;
      color: white;
      padding: 10px 20px;
-     text-align: center;
-     text-decoration: none;
-     font-size: 16px;
      margin-top: 10px;
-     transition-duration: 0.4s;
-     cursor: pointer;
-     border-radius: 50px;
-     border: 2px solid transparent;
  }
 
  .favorite:hover {
