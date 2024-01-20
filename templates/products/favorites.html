@@ -11,10 +11,10 @@
         <h2>{{ favorite.product.name }}</h2>
         <form action="{% url 'remove_from_favorites' favorite.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="Remove from wish list" class="favorite-button">
+            <input type="submit" value="Remove from wish list" class="favorite-button button">
         </form>
         <div>
-            <a class="add-to-cart" href="{% url 'add_to_cart' favorite.product.id %}">Add to cart</a>
+            <a class="add-to-cart button" href="{% url 'add_to_cart' favorite.product.id %}">Add to cart</a>
         </div>
     </div>
     {% endfor %}

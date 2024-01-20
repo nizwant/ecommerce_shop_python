@@ -27,17 +27,9 @@
 .favorite-button {
     background-color: #000000;
     color: white;
-    border: none;
     padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
     display: inline-block;
-    font-size: 16px;
     margin: 40px 20px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 50px;
-    border: 2px solid transparent;
 }
 
 .favorite-button:hover {
@@ -47,17 +39,9 @@
 }
 
 .add-to-cart {
-    text-decoration: none;
-    display: inline-block;
     padding: 10px 20px;
-    font-size: 1.2em;
     color: white;
     background-color: #007BFF;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: 2px solid transparent;
 }
 
 .add-to-cart:hover {
