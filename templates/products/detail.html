@@ -11,8 +11,7 @@
         <h1>{{ product.name }}</h1>
         <div class="product-rating">
             {% for star in "12345" %}
-            {% if forloop.counter <= product.review_score %} <span class="star">&#9733;</span>
-                <!-- filled star -->
+            {% if forloop.counter <= product.review_score %} <span class="star">&#9733;</span><!-- filled star -->
                 {% else %}
                 <span class="star">&#9734;</span> <!-- empty star -->
                 {% endif %}
