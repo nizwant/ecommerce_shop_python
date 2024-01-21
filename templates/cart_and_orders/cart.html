@@ -5,6 +5,7 @@
 <link href="{% static 'cart_and_orders/cart.css' %}" rel="stylesheet">
 <script src="{% static 'cart_and_orders/cart.js' %}"></script>
 <h1>Your Cart</h1>
+{% if cart_items %}
 <table>
     <tr>
         <th>Product</th>
@@ -22,11 +23,14 @@
         </td>
         <td>{{ item.product.price }} zł</td>
         <td class="total">{{ item.total }} zł</td>
-        <td><button class="remove" data-product-id="{{ item.product.id }}">Remove</button></td>
+        <td><button class="button-remove-from-cart" data-product-id="{{ item.product.id }}">Remove</button></td>
     </tr>
     {% endfor %}
 </table>
 <p class="total-text">Total: <span id="grandTotal"></span> zł</p>
 <button id="finalizeOrder" class="finalize-button button">Finalize Order</button>
+{% else %}
+<h1 class="empty">Your cart is empty</h1>
+{% endif %}
 <div id="toast"></div>
 {% endblock %}

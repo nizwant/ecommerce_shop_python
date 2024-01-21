@@ -19,7 +19,7 @@ th {
     background-color: #f2f2f2;
 }
 
-.remove {
+.button-remove-from-cart {
     background-color: #f44336;
     color: white;
     border: none;
@@ -28,7 +28,7 @@ th {
     border-radius: 50px;
 }
 
-.remove:hover {
+.button-remove-from-cart:hover {
     background-color: #d32f2f;
 }
 
@@ -108,4 +108,10 @@ th {
     to {
         right: -50%;
     }
+}
+
+.empty {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
