@@ -26,7 +26,7 @@ p {
     width: 45%;
 }
 
-.btn {
+.button-change-account-info {
     display: inline-block;
     padding: 10px 20px;
     color: #fff;
@@ -37,7 +37,7 @@ p {
     transition: background-color 0.3s ease;
 }
 
-.btn:hover {
+.button-change-account-info:hover {
     background-color: #02461d;
 }
 
