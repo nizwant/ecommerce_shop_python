@@ -17,6 +17,8 @@
             <a class="add-to-cart button" href="{% url 'add_to_cart' favorite.product.id %}">Add to cart</a>
         </div>
     </div>
+    {% empty %}
+    <h2 class="empty-label">Your wish list is empty</h2>
     {% endfor %}
 </div>
 {% endblock %}

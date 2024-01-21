@@ -53,3 +53,10 @@
 .wish-label {
     margin-left: 20px;
 }
+
+.empty-label {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 40px;
+}
