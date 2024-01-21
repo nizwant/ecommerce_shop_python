@@ -24,6 +24,7 @@
             <option value="{{ category.id }}">{{ category.name }}</option>
             {% endfor %}
         </select>
+        <input type="hidden" name="sort" value="{{ sort_option }}">
         <input type="submit" value="Filter">
     </form>
 
@@ -38,6 +39,7 @@
             <option value="price_desc">Price (descending)</option>
             <option value="popularity">Popularity</option>
         </select>
+        <input type="hidden" name="category" value="{{ selected_categories }}">
         <input type="submit" value="Sort">
     </form>
 </div>

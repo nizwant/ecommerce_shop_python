@@ -12,7 +12,9 @@ def index(request):
     if "category" in request.GET and request.GET["category"]:
         selected_categories = request.GET.getlist("category")
         products = Product.objects.filter(category__id__in=selected_categories)
+        selected_categories = selected_categories[0]
     else:
+        selected_categories = ""
         products = Product.objects.all()
 
     sort_option = request.GET.get("sort", "")
@@ -30,7 +32,12 @@ def index(request):
     return render(
         request,
         "products/index.html",
-        {"product_list": products, "category_list": categories},
+        {
+            "product_list": products,
+            "category_list": categories,
+            "sort_option": sort_option,
+            "selected_categories": selected_categories,
+        },
     )
 
 
