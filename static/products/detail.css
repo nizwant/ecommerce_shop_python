@@ -103,3 +103,9 @@
          margin: 50px;
      }
  }
+
+ .product-description-text {
+     overflow-wrap: break-word;
+     word-wrap: break-word;
+     hyphens: auto;
+ }

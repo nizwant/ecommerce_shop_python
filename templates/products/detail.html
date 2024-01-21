@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load space_preserver %}
 
 {% block content %}
 <link href="{% static 'products/detail.css' %}" rel="stylesheet">
@@ -27,7 +28,8 @@
 </div>
 <div class="product-description">
     <h2>Description</h2>
-    <p>{{ product.description }}</p>
+    <p class="product-description-text">{% spaceless %}{{ product.description|preserve_spaces|escape|linebreaksbr }}
+        {%endspaceless %}</p>
     <p>Views: {{ product.view_count }}</p>
 </div>
 
