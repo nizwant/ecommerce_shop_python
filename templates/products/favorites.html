@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<link href="{% static 'products/favorites.css' %}" rel="stylesheet">
+<link href="{% static 'products/wish_list.css' %}" rel="stylesheet">
 <h1 class="wish-label">My Wish List</h1>
 <div class="favorites-container">
     {% for favorite in favorites %}
@@ -14,7 +14,7 @@
             <input type="submit" value="Remove from wish list" class="favorite-button button">
         </form>
         <div>
-            <a class="add-to-cart button" href="{% url 'add_to_cart' favorite.product.id %}">Add to cart</a>
+            <a class="add-to-cart-button button" href="{% url 'add_to_cart' favorite.product.id %}">Add to cart</a>
         </div>
     </div>
     {% empty %}

@@ -38,13 +38,13 @@
     border: 2px solid #000000;
 }
 
-.add-to-cart {
+.add-to-cart-button {
     padding: 10px 20px;
     color: white;
     background-color: #007BFF;
 }
 
-.add-to-cart:hover {
+.add-to-cart-button:hover {
     background-color: white;
     color: black;
     border: 2px solid #007BFF;
