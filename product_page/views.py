@@ -52,9 +52,9 @@ def add_to_favorites(request, product_id):
 
 
 @login_required
-def favorites(request):
+def wish_list(request):
     favorites = FavoriteProduct.objects.filter(session=request.session.session_key)
-    return render(request, "products/favorites.html", {"favorites": favorites})
+    return render(request, "products/wish_list.html", {"favorites": favorites})
 
 
 @require_POST

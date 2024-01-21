@@ -10,7 +10,7 @@ urlpatterns = [
         views.add_to_favorites,
         name="add_to_favorites",
     ),
-    path("favorites/", views.favorites, name="favorites"),
+    path("favorites/", views.wish_list, name="favorites"),
     path(
         "favorites/remove/<int:favorite_id>/",
         views.remove_from_favorites,
