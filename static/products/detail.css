@@ -109,3 +109,8 @@
      word-wrap: break-word;
      hyphens: auto;
  }
+
+ .fa {
+     font-size: 1.4em;
+     color: black;
+ }

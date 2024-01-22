@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load space_preserver %}
+{% load subtract %}
 
 {% block content %}
 <link href="{% static 'products/detail.css' %}" rel="stylesheet">
@@ -12,11 +13,14 @@
         <h1>{{ product.name }}</h1>
         <div class="product-rating">
             {% for star in "12345" %}
-            {% if forloop.counter <= product.review_score %} <span class="star">&#9733;</span><!-- filled star -->
-                {% else %}
-                <span class="star">&#9734;</span> <!-- empty star -->
-                {% endif %}
-                {% endfor %}
+            {% if forloop.counter <= product.review_score %} <i class="fa fa-star"></i><!-- full star -->
+                {% elif forloop.counter|subtract:1 < product.review_score %} <i class="fa fa-star-half-o"
+                    aria-hidden="true">
+                    </i> <!-- half star -->
+                    {% else %}
+                    <i class="fa fa-star-o" aria-hidden="true"></i> <!-- empty star -->
+                    {% endif %}
+                    {% endfor %}
         </div>
         <p class="product-price">{{ product.price }} zł</p>
         <div>
