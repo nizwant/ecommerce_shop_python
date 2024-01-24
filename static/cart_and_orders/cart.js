@@ -13,7 +13,7 @@ function getCookie(name) {
     return cookieValue;
 }
 
-// Function to update the grand total
+// Function to update the total price of the order
 function updateGrandTotal() {
     var grandTotal = 0;
     document.querySelectorAll('.total').forEach(function (total) {
@@ -22,7 +22,7 @@ function updateGrandTotal() {
     document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
 }
 
-// Function to update the total price of an item
+// Function to update the price of an items = quantity * price
 function updateTotalPrice(quantityInput) {
     var price = parseFloat(quantityInput.dataset.price);
     var quantity = parseInt(quantityInput.value);
