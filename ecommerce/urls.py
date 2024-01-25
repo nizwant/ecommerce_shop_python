@@ -1,3 +1,5 @@
+from django.views.generic.base import RedirectView
+
 """
 URL configuration for ecommerce project.
 
@@ -25,6 +27,9 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("accounts.urls")),
     path("orders/", include("cart_and_orders.urls")),
+    path(
+        "", RedirectView.as_view(url="/products/")
+    ),  # Redirect from root to /products/
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
