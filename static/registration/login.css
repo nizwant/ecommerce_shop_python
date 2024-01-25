@@ -32,3 +32,8 @@
 .login-button:hover {
     background-color: #0056b3;
 }
+
+.password-reset {
+    text-align: center;
+    margin-top: 16px;
+}
