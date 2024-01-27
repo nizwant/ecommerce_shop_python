@@ -18,6 +18,9 @@ class UserProfileForm(forms.ModelForm):
             "zip_code",
             "city",
         ]
+        widgets = {
+            "birth_date": forms.DateInput(attrs={"type": "date"}),
+        }
 
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)

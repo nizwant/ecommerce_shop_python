@@ -35,3 +35,8 @@
 body {
     overflow: hidden;
 }
+
+.profile-update-form table td input {
+    width: 100%;
+    box-sizing: border-box;
+}
