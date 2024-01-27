@@ -1,6 +1,8 @@
 from django import forms
 from .models import UserProfile
 from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
+from datetime import date
 
 
 class UserProfileForm(forms.ModelForm):
@@ -26,3 +28,11 @@ class UserProfileForm(forms.ModelForm):
         super(UserProfileForm, self).__init__(*args, **kwargs)
         for field_name in self.fields:
             self.fields[field_name].required = False
+
+    def clean_birth_date(self):
+        birth_date = self.cleaned_data.get("birth_date")
+
+        if birth_date and birth_date > date.today():
+            raise ValidationError("Birth date cannot be in the future.")
+
+        return birth_date

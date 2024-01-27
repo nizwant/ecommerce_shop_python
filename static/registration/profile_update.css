@@ -40,3 +40,23 @@ body {
     width: 100%;
     box-sizing: border-box;
 }
+
+table {
+    position: relative;
+    width: 100%;
+}
+
+td.error-message {
+    position: absolute;
+    left: 280px;
+    margin-top: -5px;
+
+}
+
+
+.error-message {
+    text-align: left;
+    color: red;
+    font-size: 12px;
+    white-space: nowrap;
+}
