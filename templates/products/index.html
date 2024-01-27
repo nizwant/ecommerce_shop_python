@@ -32,12 +32,12 @@
     <form method="GET" action="." class="filter-form">
         <label for="sort">Sort:</label>
         <select name="sort" id="sort">
-            <option value="">Default</option>
-            <option value="name_asc">Name (A-Z)</option>
-            <option value="name_desc">Name (Z-A)</option>
-            <option value="price_asc">Price (ascending)</option>
-            <option value="price_desc">Price (descending)</option>
-            <option value="popularity">Popularity</option>
+            <option value="" {% if sort_option == "" %}selected{% endif %}>Default</option>
+            <option value="name_asc" {% if sort_option == "name_asc" %}selected{% endif %}>Name (A-Z)</option>
+            <option value="name_desc" {% if sort_option == "name_desc" %}selected{% endif %}>Name (Z-A)</option>
+            <option value="price_asc" {% if sort_option == "price_asc" %}selected{% endif %}>Price (ascending)</option>
+            <option value="price_desc" {% if sort_option == "price_desc" %}selected{% endif %}>Price (descending)</option>
+            <option value="popularity" {% if sort_option == "popularity" %}selected{% endif %}>Popularity</option>
         </select>
         <input type="hidden" name="category" value="{{ selected_categories }}">
         <input type="submit" value="Sort">
