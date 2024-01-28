@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 {% block content %}
     <link href="{% static 'products/wish_list.css' %}" rel="stylesheet">
@@ -25,4 +25,4 @@
             <h2 class="empty-label">Your wish list is empty</h2>
         {% endfor %}
     </div>
-{% endblock %}
+{% endblock content %}

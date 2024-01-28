@@ -14,7 +14,7 @@
     <h1>Product list</h1>
     <div class="form-container">
         <!-- Category form -->
-        <form method="GET" action="." class="filter-form">
+        <form method="get" action="." class="filter-form">
             <label for="category">Category:</label>
             <select name="category" id="category">
                 <option value="">All Products</option>
@@ -60,4 +60,4 @@
     {% else %}
         <h1 class="empty-label">No products with such parameters</h1>
     {% endif %}
-{% endblock %}
+{% endblock content %}
