@@ -1,63 +1,63 @@
 {% extends "base.html" %}
 {% load static %}
-
-
 {% block content %}
-<link href="{% static 'products/index.css' %}" rel="stylesheet">
-{% for message in messages %}
-<link rel="stylesheet" href="{% static 'popup.css' %}">
-<script src="{% static 'popup.js' %}"></script>
-<div class="alert" id="alert">
-    {{ message }}
-    <span class="closebtn"
-        onclick="this.parentElement.style.opacity='0'; setTimeout(() => this.parentElement.style.display='none', 600);">&times;</span>
-</div>
-{% endfor %}
-<h1>Product list</h1>
-<div class="form-container">
-    <!-- Category form -->
-    <form method="GET" action="." class="filter-form">
-        <label for="category">Category:</label>
-        <select name="category" id="category">
-            <option value="">All Products</option>
-            {% for category in category_list %}
-            <option value="{{ category.id }}">{{ category.name }}</option>
-            {% endfor %}
-        </select>
-        <input type="hidden" name="sort" value="{{ sort_option }}">
-        <input type="submit" value="Filter">
-    </form>
-
-    <!-- Sort form -->
-    <form method="GET" action="." class="filter-form">
-        <label for="sort">Sort:</label>
-        <select name="sort" id="sort">
-            <option value="" {% if sort_option == "" %}selected{% endif %}>Default</option>
-            <option value="name_asc" {% if sort_option == "name_asc" %}selected{% endif %}>Name (A-Z)</option>
-            <option value="name_desc" {% if sort_option == "name_desc" %}selected{% endif %}>Name (Z-A)</option>
-            <option value="price_asc" {% if sort_option == "price_asc" %}selected{% endif %}>Price (ascending)</option>
-            <option value="price_desc" {% if sort_option == "price_desc" %}selected{% endif %}>Price (descending)</option>
-            <option value="popularity" {% if sort_option == "popularity" %}selected{% endif %}>Popularity</option>
-        </select>
-        <input type="hidden" name="category" value="{{ selected_categories }}">
-        <input type="submit" value="Sort">
-    </form>
-</div>
-{% if product_list %}
-<div class="product-grid">
-    {% for product in product_list %}
-    <div class="product-card">
-        <a href="{% url 'detail' product.id %}">
-            <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
-            <div class="product-info">
-                <h2>{{ product.name }}</h2>
-                <p class="product-price">{{ product.price }} zł</p>
-            </div>
-        </a>
-    </div>
+    <link href="{% static 'products/index.css' %}" rel="stylesheet">
+    {% for message in messages %}
+        <link rel="stylesheet" href="{% static 'popup.css' %}">
+        <script src="{% static 'popup.js' %}"></script>
+        <div class="alert" id="alert">
+            {{ message }}
+            <span class="closebtn"
+                  onclick="this.parentElement.style.opacity='0'; setTimeout(() => this.parentElement.style.display='none', 600);">&times;</span>
+        </div>
     {% endfor %}
-</div>
-{% else %}
-<h1 class="empty-label">No products with such parameters</h1>
-{% endif %}
+    <h1>Product list</h1>
+    <div class="form-container">
+        <!-- Category form -->
+        <form method="GET" action="." class="filter-form">
+            <label for="category">Category:</label>
+            <select name="category" id="category">
+                <option value="">All Products</option>
+                {% for category in category_list %}<option value="{{ category.id }}">{{ category.name }}</option>{% endfor %}
+            </select>
+            <input type="hidden" name="sort" value="{{ sort_option }}">
+            <input type="submit" value="Filter">
+        </form>
+        <!-- Sort form -->
+        <form method="GET" action="." class="filter-form">
+            <label for="sort">Sort:</label>
+            <select name="sort" id="sort">
+                <option value="" {% if sort_option == "" %}selected{% endif %}>Default</option>
+                <option value="name_asc"
+                        {% if sort_option == "name_asc" %}selected{% endif %}>Name (A-Z)</option>
+                <option value="name_desc"
+                        {% if sort_option == "name_desc" %}selected{% endif %}>Name (Z-A)</option>
+                <option value="price_asc"
+                        {% if sort_option == "price_asc" %}selected{% endif %}>Price (ascending)</option>
+                <option value="price_desc"
+                        {% if sort_option == "price_desc" %}selected{% endif %}>Price (descending)</option>
+                <option value="popularity"
+                        {% if sort_option == "popularity" %}selected{% endif %}>Popularity</option>
+            </select>
+            <input type="hidden" name="category" value="{{ selected_categories }}">
+            <input type="submit" value="Sort">
+        </form>
+    </div>
+    {% if product_list %}
+        <div class="product-grid">
+            {% for product in product_list %}
+                <div class="product-card">
+                    <a href="{% url 'detail' product.id %}">
+                        <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
+                        <div class="product-info">
+                            <h2>{{ product.name }}</h2>
+                            <p class="product-price">{{ product.price }} zł</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h1 class="empty-label">No products with such parameters</h1>
+    {% endif %}
 {% endblock %}
