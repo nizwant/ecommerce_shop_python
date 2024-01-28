@@ -1,46 +1,44 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
-<link href="{% static 'registration/profile_detail.css' %}" rel="stylesheet">
-<div class="profile-container">
-    <div>
-        <h1>User Profile</h1>
-        <p>First name: {{ user_profile.first_name }}</p>
-        <p>Last name: {{ user_profile.last_name }}</p>
-        <p>Email: {{ user_profile.email }}</p>
-        <p>Phone number: {{ user_profile.phone_number }}</p>
-        <p>Birth date: {{ user_profile.birth_date }}</p>
-        <a href="{% url 'profile' %}" class="button-change-account-info">Update Profile</a>
+    <link href="{% static 'registration/profile_detail.css' %}"
+          rel="stylesheet">
+    <div class="profile-container">
+        <div>
+            <h1>User Profile</h1>
+            <p>First name: {{ user_profile.first_name }}</p>
+            <p>Last name: {{ user_profile.last_name }}</p>
+            <p>Email: {{ user_profile.email }}</p>
+            <p>Phone number: {{ user_profile.phone_number }}</p>
+            <p>Birth date: {{ user_profile.birth_date }}</p>
+            <a href="{% url 'profile' %}" class="button-change-account-info">Update Profile</a>
+        </div>
+        <div>
+            <h1>Shipping Info</h1>
+            <p>Street name: {{ user_profile.street_name }}</p>
+            <p>Street number: {{ user_profile.street_number }}</p>
+            <p>House number: {{ user_profile.house_number }}</p>
+            <p>Zip code: {{ user_profile.zip_code }}</p>
+            <p>City: {{ user_profile.city }}</p>
+        </div>
     </div>
-    <div>
-        <h1>Shipping Info</h1>
-        <p>Street name: {{ user_profile.street_name }}</p>
-        <p>Street number: {{ user_profile.street_number }}</p>
-        <p>House number: {{ user_profile.house_number }}</p>
-        <p>Zip code: {{ user_profile.zip_code }}</p>
-        <p>City: {{ user_profile.city }}</p>
+    <h1>Order history</h1>
+    <div class="order-header">
+        <div>Date</div>
+        <div>Status</div>
+        <div>Shipping Method</div>
+        <div>Total Price</div>
     </div>
-</div>
-
-
-<h1>Order history</h1>
-<div class="order-header">
-    <div>Date</div>
-    <div>Status</div>
-    <div>Shipping Method</div>
-    <div>Total Price</div>
-</div>
-{% for order in orders %}
-<a href="{% url 'profile_order' order_id=order.id %}" class="order-link">
-    <div class="order">
-        <div>{{ order.created_at }}</div>
-        <div>{{ order.shipping_status }}</div>
-        <div>{{ order.shipping_method }}</div>
-        <div>{{ order.total_price }} zł</div>
-    </div>
-</a>
-{% empty %}
-<p>No orders yet.</p>
-{% endfor %}
-{% endblock %}
+    {% for order in orders %}
+        <a href="{% url 'profile_order' order_id=order.id %}" class="order-link">
+            <div class="order">
+                <div>{{ order.created_at }}</div>
+                <div>{{ order.shipping_status }}</div>
+                <div>{{ order.shipping_method }}</div>
+                <div>{{ order.total_price }} zł</div>
+            </div>
+        </a>
+    {% empty %}
+        <p>No orders yet.</p>
+    {% endfor %}
+{% endblock content %}

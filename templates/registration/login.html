@@ -1,46 +1,40 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
-<link href="{% static 'registration/login.css' %}" rel="stylesheet">
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-
-{% if next %}
-{% if user.is_authenticated %}
-<p>
-    Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.
-</p>
-{% else %}
-<p>Login to see this page.</p>
-{% endif %}
-{% endif %}
-<div class="center-div">
-    <div class="form-and-password-reset">
-        <form method="post" action="{% url 'login' %}" class="login-form">
-            {% csrf_token %}
-
-            <table class="login-table">
-                <tr>
-                    <td>Username:</td>
-                    <td>{{ form.username }}</td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td>{{ form.password }}</td>
-                </tr>
-            </table>
-
-            <input type="submit" value="Login" class="login-button">
-            <input type="hidden" name="next" value="{{ next }}">
-        </form>
-        <div>
-            <p class="password-reset"><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+    <link href="{% static 'registration/login.css' %}" rel="stylesheet">
+    {% if form.errors %}<p>Your username and password didn't match. Please try again.</p>{% endif %}
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>
+                Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.
+            </p>
+        {% else %}
+            <p>Login to see this page.</p>
+        {% endif %}
+    {% endif %}
+    <div class="center-div">
+        <div class="form-and-password-reset">
+            <form method="post" action="{% url 'login' %}" class="login-form">
+                {% csrf_token %}
+                <table class="login-table">
+                    <tr>
+                        <td>Username:</td>
+                        <td>{{ form.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td>{{ form.password }}</td>
+                    </tr>
+                </table>
+                <input type="submit" value="Login" class="login-button">
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+            <div>
+                <p class="password-reset">
+                    <a href="{% url 'password_reset' %}">Forgot password?</a>
+                </p>
+            </div>
         </div>
     </div>
-
-
-</div>
-{% endblock %}
+{% endblock content %}
