@@ -3,12 +3,12 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    transform: translateY(-10%);
 }
 
 .profile-update-form {
     width: 300px;
     margin: 0 auto;
+    transform: translateY(-30%);
 }
 
 .profile-update-form h2 {

@@ -6,6 +6,7 @@
      overflow: hidden;
      background-color: #333;
      width: 100%;
+     z-index: 1000;
  }
 
  .navbar a {
