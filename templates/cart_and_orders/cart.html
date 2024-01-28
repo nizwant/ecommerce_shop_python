@@ -1,36 +1,44 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
-<link href="{% static 'cart_and_orders/cart.css' %}" rel="stylesheet">
-<script src="{% static 'cart_and_orders/cart.js' %}"></script>
-<h1>Your Cart</h1>
-{% if cart_items %}
-<table>
-    <tr>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Total</th>
-        <th></th>
-    </tr>
-    {% for item in cart_items %}
-    <tr>
-        <td>{{ item.product.name }}</td>
-        <td>
-            <input type="number" min="1" value="{{ item.quantity }}" data-price="{{ item.product.price }}"
-                class="quantity" data-product-id="{{ item.product.id }}">
-        </td>
-        <td>{{ item.product.price }} zł</td>
-        <td class="total">{{ item.total }} zł</td>
-        <td><button class="button-remove-from-cart remove" data-product-id="{{ item.product.id }}">Remove</button></td>
-    </tr>
-    {% endfor %}
-</table>
-<p class="total-text">Total: <span id="grandTotal"></span> zł</p>
-<button id="finalizeOrder" class="finalize-button button">Finalize Order</button>
-{% else %}
-<h1 class="empty">Your cart is empty</h1>
-{% endif %}
-<div id="toast"></div>
-{% endblock %}
+    <link href="{% static 'cart_and_orders/cart.css' %}" rel="stylesheet">
+    <script src="{% static 'cart_and_orders/cart.js' %}"></script>
+    <h1>Your Cart</h1>
+    {% if cart_items %}
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+            {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>
+                        <input type="number"
+                               min="1"
+                               value="{{ item.quantity }}"
+                               data-price="{{ item.product.price }}"
+                               class="quantity"
+                               data-product-id="{{ item.product.id }}">
+                    </td>
+                    <td>{{ item.product.price }} zł</td>
+                    <td class="total">{{ item.total }} zł</td>
+                    <td>
+                        <button class="button-remove-from-cart remove"
+                                data-product-id="{{ item.product.id }}">Remove</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <p class="total-text">
+            Total: <span id="grandTotal"></span> zł
+        </p>
+        <button id="finalizeOrder" class="finalize-button button">Finalize Order</button>
+    {% else %}
+        <h1 class="empty">Your cart is empty</h1>
+    {% endif %}
+    <div id="toast"></div>
+{% endblock content %}
