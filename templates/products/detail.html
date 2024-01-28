@@ -2,39 +2,43 @@
 {% load static %}
 {% load space_preserver %}
 {% load subtract %}
-
 {% block content %}
-<link href="{% static 'products/detail.css' %}" rel="stylesheet">
-<div class="product-detail">
-    <div class="product-image-wrapper">
-        <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-image">
-    </div>
-    <div class="product-info">
-        <h1>{{ product.name }}</h1>
-        <div class="product-rating">
-            {% for star in "12345" %}
-            {% if forloop.counter <= product.review_score %} <i class="fa fa-star"></i><!-- full star -->
-                {% elif forloop.counter|subtract:1 < product.review_score %} <i class="fa fa-star-half-o"
-                    aria-hidden="true">
-                    </i> <!-- half star -->
+    <link href="{% static 'products/detail.css' %}" rel="stylesheet">
+    <div class="product-detail">
+        <div class="product-image-wrapper">
+            <img src="{{ product.main_image.url }}"
+                 alt="{{ product.name }}"
+                 class="product-image">
+        </div>
+        <div class="product-info">
+            <h1>{{ product.name }}</h1>
+            <div class="product-rating">
+                {% for star in "12345" %}
+                    {% if forloop.counter <= product.review_score %}
+                        <i class="fa fa-star"></i><!-- full star -->
+                    {% elif forloop.counter|subtract:1 < product.review_score %}
+                        <i class="fa fa-star-half-o" aria-hidden="true">
+                        </i> <!-- half star -->
                     {% else %}
-                    <i class="fa fa-star-o" aria-hidden="true"></i> <!-- empty star -->
+                        <i class="fa fa-star-o" aria-hidden="true"></i> <!-- empty star -->
                     {% endif %}
-                    {% endfor %}
+                {% endfor %}
+            </div>
+            <p class="product-price">{{ product.price }} zł</p>
+            <div>
+                <a class="add-to-cart" href="{% url 'add_to_cart' product.id %}">Add to cart</a>
+            </div>
+            <a href="{% url 'add_to_favorites' product.id %}"
+               class="favorite button">Add to wish list</a>
         </div>
-        <p class="product-price">{{ product.price }} zł</p>
-        <div>
-            <a class="add-to-cart" href="{% url 'add_to_cart' product.id %}">Add to cart</a>
-        </div>
-
-        <a href="{% url 'add_to_favorites' product.id %}" class="favorite button">Add to wish list</a>
     </div>
-</div>
-<div class="product-description">
-    <h2>Description</h2>
-    <p class="product-description-text">{% spaceless %}{{ product.description|preserve_spaces|escape|linebreaksbr }}
-        {%endspaceless %}</p>
-    <p>Views: {{ product.view_count }}</p>
-</div>
-
+    <div class="product-description">
+        <h2>Description</h2>
+        <p class="product-description-text">
+            {% spaceless %}
+                {{ product.description|preserve_spaces|escape|linebreaksbr }}
+            {% endspaceless %}
+        </p>
+        <p>Views: {{ product.view_count }}</p>
+    </div>
 {% endblock %}

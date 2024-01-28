@@ -1,24 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-<link href="{% static 'products/wish_list.css' %}" rel="stylesheet">
-<h1 class="wish-label">My Wish List</h1>
-<div class="favorites-container">
-    {% for favorite in favorites %}
-    <div class="favorite-item">
-        <img class="favorite-image" src="{{ favorite.product.main_image.url }}" alt="{{ favorite.product.name }}">
-        <h2>{{ favorite.product.name }}</h2>
-        <form action="{% url 'remove_from_favorites' favorite.id %}" method="post">
-            {% csrf_token %}
-            <input type="submit" value="Remove from wish list" class="favorite-button button">
-        </form>
-        <div>
-            <a class="add-to-cart-button button" href="{% url 'add_to_cart' favorite.product.id %}">Add to cart</a>
-        </div>
+    <link href="{% static 'products/wish_list.css' %}" rel="stylesheet">
+    <h1 class="wish-label">My Wish List</h1>
+    <div class="favorites-container">
+        {% for favorite in favorites %}
+            <div class="favorite-item">
+                <img class="favorite-image"
+                     src="{{ favorite.product.main_image.url }}"
+                     alt="{{ favorite.product.name }}">
+                <h2>{{ favorite.product.name }}</h2>
+                <form action="{% url 'remove_from_favorites' favorite.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit"
+                           value="Remove from wish list"
+                           class="favorite-button button">
+                </form>
+                <div>
+                    <a class="add-to-cart-button button"
+                       href="{% url 'add_to_cart' favorite.product.id %}">Add to cart</a>
+                </div>
+            </div>
+        {% empty %}
+            <h2 class="empty-label">Your wish list is empty</h2>
+        {% endfor %}
     </div>
-    {% empty %}
-    <h2 class="empty-label">Your wish list is empty</h2>
-    {% endfor %}
-</div>
 {% endblock %}
