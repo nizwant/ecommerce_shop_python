@@ -12,17 +12,9 @@
  }
 
  .add-to-cart {
-     text-decoration: none;
-     display: inline-block;
      padding: 10px 20px;
-     font-size: 1.2em;
      color: white;
      background-color: #007BFF;
-     border: none;
-     border-radius: 50px;
-     cursor: pointer;
-     transition: background-color 0.3s ease;
-     border: 2px solid transparent;
  }
 
  .add-to-cart:hover {
