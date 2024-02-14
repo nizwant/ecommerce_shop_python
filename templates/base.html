@@ -22,7 +22,7 @@
             <div class="navbar">
                 <a href="{% url 'index' %}">Product List</a>
                 <p>Logged as: {{ user.username }}</p>
-                <a class="signin" href="/accounts/logout/">Logout</a>
+                <a class="signin" href="{% url 'logout' %}">Logout</a>
                 <a class="signin" href="{% url 'profile_detail' %}">Profile</a>
                 <a class="signin" href="{% url 'cart' %}">Cart</a>
                 <a class="signin" href="{% url 'favorites' %}">Wish List</a>
@@ -30,8 +30,8 @@
         {% else %}
             <div class="navbar">
                 <a href="{% url 'index' %}">Product List</a>
-                <a class="signin" href="/accounts/register/">Register</a>
-                <a class="signin" href="/accounts/login/">Login</a>
+                <a class="signin" href="{% url 'register' %}">Register</a>
+                <a class="signin" href="{% url 'login' %}">Login</a>
             </div>
         {% endif %}
         <div class="content">
